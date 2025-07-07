@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../log_upload/application/log_file_provider.dart';
 import '../../../log_view/data/log_parser.dart';
 import '../../../log_view/domain/log_entry.dart';
+import '../widgets/error_stat_tile.dart';
+import '../widgets/stat_card.dart';
+import '../widgets/stat_tile.dart';
+import '../widgets/total_files_tile.dart';
 
 class DashboardStats extends ConsumerWidget {
   const DashboardStats({super.key});
@@ -46,9 +50,9 @@ class DashboardStats extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
-            child: _StatCard(
+            child: StatCard(
               color: cardColor,
-              child: _TotalFilesTile(
+              child: TotalFilesTile(
                 fileCount: totalFiles,
                 timestampCount: total,
               ),
@@ -56,9 +60,9 @@ class DashboardStats extends ConsumerWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: _StatCard(
+            child: StatCard(
               color: cardColor,
-              child: _ErrorStatTile(
+              child: ErrorStatTile(
                 count: errorCount,
                 fileCount: errorFiles,
               ),
@@ -66,9 +70,9 @@ class DashboardStats extends ConsumerWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: _StatCard(
+            child: StatCard(
               color: cardColor,
-              child: _StatTile(
+              child: StatTile(
                 label: 'Warnings',
                 count: warningCount,
                 color: Colors.orangeAccent,
@@ -79,9 +83,9 @@ class DashboardStats extends ConsumerWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: _StatCard(
+            child: StatCard(
               color: cardColor,
-              child: _StatTile(
+              child: StatTile(
                 label: 'Success',
                 count: infoCount,
                 color: Colors.green,
@@ -91,104 +95,6 @@ class DashboardStats extends ConsumerWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ErrorStatTile extends StatelessWidget {
-  final int count;
-  final int fileCount;
-  const _ErrorStatTile({required this.count, required this.fileCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('ERROR', style: TextStyle(color: Colors.grey[400], fontSize: 14)),
-        const SizedBox(height: 2),
-        Text('includes CRITICAL, FATAL', style: TextStyle(color: Colors.grey[500], fontSize: 11)),
-        const SizedBox(height: 2),
-        Text('$count', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.redAccent)),
-        const SizedBox(height: 2),
-        Text('$fileCount files', style: TextStyle(color: Colors.grey[400], fontSize: 13)),
-      ],
-    );
-  }
-}
-
-class _StatTile extends StatelessWidget {
-  final String label;
-  final int count;
-  final Color color;
-  final String? subtitle;
-  final int? fileCount;
-  const _StatTile({required this.label, required this.count, required this.color, this.subtitle, this.fileCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label.toUpperCase(), style: TextStyle(color: Colors.grey[400], fontSize: 14)),
-        if (subtitle != null) ...[
-          const SizedBox(height: 2),
-          Text(subtitle!, style: TextStyle(color: Colors.grey[500], fontSize: 11)),
-        ],
-        const SizedBox(height: 2),
-        Text('$count', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: color)),
-        if (fileCount != null) ...[
-          const SizedBox(height: 2),
-          Text('$fileCount files', style: TextStyle(color: Colors.grey[400], fontSize: 13)),
-        ],
-      ],
-    );
-  }
-}
-
-class _TotalFilesTile extends StatelessWidget {
-  final int fileCount;
-  final int timestampCount;
-  const _TotalFilesTile({required this.fileCount, required this.timestampCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('TOTAL FILES', style: TextStyle(color: Colors.grey[400], fontSize: 14)),
-        const SizedBox(height: 2),
-        Text('All imported log files', style: TextStyle(color: Colors.grey[500], fontSize: 11)),
-        const SizedBox(height: 2),
-        Text('$fileCount', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white)),
-        const SizedBox(height: 2),
-        Text('$timestampCount timestamps', style: TextStyle(color: Colors.grey[400], fontSize: 13)),
-      ],
-    );
-  }
-}
-
-class _StatCard extends StatelessWidget {
-  final Widget child;
-  final Color color;
-  const _StatCard({required this.child, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: child,
-        ),
       ),
     );
   }

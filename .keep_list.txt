@@ -1,0 +1,26 @@
+# Files/folders to keep (used by app or required for build)
+/lib/app.dart
+/lib/main.dart
+/lib/core/theme/app_theme.dart
+/lib/features/dashboard/presentation/pages/dashboard_page.dart
+/lib/features/dashboard/presentation/pages/dashboard_stats.dart
+/lib/features/dashboard/presentation/pages/recent_logs_list.dart
+/lib/features/dashboard/presentation/widgets/date_filter_bar.dart
+/lib/features/log_upload/application/desktop_drop_utils.dart
+/lib/features/log_upload/application/log_file_provider.dart
+/lib/features/log_upload/data/log_file_repository_impl.dart
+/lib/features/log_upload/domain/log_file.dart
+/lib/features/log_upload/presentation/pages/log_upload_page.dart
+/lib/features/log_view/presentation/pages/log_view_page.dart
+/lib/features/log_view/presentation/widgets/log_level_filter_bar.dart
+/lib/features/log_view/presentation/widgets/log_search_bar.dart
+/lib/presentation/routes/app_router.dart
+/README.md
+/LICENSE
+/pubspec.yaml
+/pubspec.lock
+/analysis_options.yaml
+/web/
+/macos/
+/windows/
+/linux/

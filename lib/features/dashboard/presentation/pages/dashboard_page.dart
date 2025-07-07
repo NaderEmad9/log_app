@@ -29,23 +29,6 @@ class DashboardPage extends ConsumerWidget {
   }
 }
 
-class RecentLogsList extends StatelessWidget {
-  const RecentLogsList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10, // For example, show 10 recent logs
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text('Log Entry ${index + 1}'),
-          subtitle: Text('Details of log entry ${index + 1}'),
-        );
-      },
-    );
-  }
-}
-
 class DashboardFilesList extends ConsumerStatefulWidget {
   final List<LogFile> files;
   final String search;
@@ -178,11 +161,6 @@ class _DashboardFilesListState extends ConsumerState<DashboardFilesList> {
     return '${dt.month}/${dt.day}/${dt.year}, ${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}:${dt.second.toString().padLeft(2, '0')}';
   }
 
-  String _prettyTimestamp(DateTime dt) {
-    // e.g. Jun 14 05:58:17
-    final month = _monthShort(dt.month);
-    return '$month ${dt.day.toString().padLeft(2, '0')} ${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}:${dt.second.toString().padLeft(2, '0')}';
-  }
 
   String _monthShort(int month) {
     const months = [
@@ -191,18 +169,6 @@ class _DashboardFilesListState extends ConsumerState<DashboardFilesList> {
     return months[(month - 1).clamp(0, 11)];
   }
 
-  String _levelText(LogLevel level) {
-    switch (level) {
-      case LogLevel.error:
-        return 'ERROR';
-      case LogLevel.warning:
-        return 'WARNING';
-      case LogLevel.success:
-        return 'SUCCESS';
-      default:
-        return '';
-    }
-  }
 
   Color _levelColor(LogLevel level, BuildContext context) {
     switch (level) {

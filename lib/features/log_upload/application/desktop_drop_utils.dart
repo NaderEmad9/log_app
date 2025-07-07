@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:desktop_drop/desktop_drop.dart';
 import '../domain/log_file.dart';
 
 Future<List<LogFile>> droppedFilesToLogFiles(List<Uri> uris) async {
