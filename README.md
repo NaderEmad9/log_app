@@ -18,10 +18,6 @@ A modern, offline-first log file analyzer for Windows and macOS Desktop (with su
 - Riverpod for state management
 - Navigator 2.0 for routing
 
-## Download
-
-- Download the latest release for [Windows or macOS](https://github.com/YOUR_USERNAME/YOUR_REPO/releases) from the Releases page.
-
 ## Getting Started
 
 ### Prerequisites
