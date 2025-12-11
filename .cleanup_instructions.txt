@@ -1,5 +1,0 @@
-# Cleanup Instructions
-- Delete everything in .delete_list.txt
-- Double-check .keep_list.txt for required files
-- Remove any other files/folders not in .keep_list.txt if not needed for build or platform
-- Rebuild and test app after cleanup
